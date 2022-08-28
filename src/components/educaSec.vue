@@ -2,7 +2,7 @@
     <div id="education">
         <div>
             <h3 align="center">Education</h3>
-                <div v-for="(school,index) of Education" :key="index">
+                <div v-for="(school,index) of Education" :key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
                     <span>{{school.name}}</span><span>{{school.start}}~{{school.end}}</span>
                 </div>
         </div>
@@ -15,6 +15,8 @@ export default {
     name: 'educaSec',
     data(){
         return {
+            choosenEdu : 0,
+            text_color:'black',
             Education:{
               highSchool:{
                 name:'Nanhu senior highschool',
@@ -34,10 +36,19 @@ export default {
             }
         }
     },
+    computed:{
+        // changeColor(index){
+        //     return index===this.choosenEdu ? 'color:red;':'color:black;'
+        // }
+    },
     methods:{
-        Alert(){
-            alert("this is QQQ")
-        }
+        mouseOver(event){
+            event.target.style.color="green"
+        },
+        mouseOut(event){
+            event.target.style.color= 'black'
+        },
+      
     }
 }
 </script>
