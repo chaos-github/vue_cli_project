@@ -1,9 +1,9 @@
 <template>
   <div id="myResume">
-    <h2 align="center" v-once>{{welcomeMessage}}</h2>
-    <p align="center" v-once>{{today}}</p>
-    <introSec/>
-    <educaSec/>
+    <h2 align="center" v-once @click="emitEvent">{{welcomeMessage}}</h2>
+    <p align="center" >{{today}}</p>
+    <introSec secName="Introduction"/>
+    <educaSec secName="Education"/>
   </div>
 </template>
 
@@ -19,8 +19,18 @@
     data(){
       return {
         welcomeMessage : "Hello Vue resume" ,
-        today : 'Today is '+new Date().toDateString()
+        today : 'Today is '+new Date(new Date().getTime())
       }
+    },
+    methods:{
+      emitEvent(){
+        this.$emit("header-event")
+      }
+    },
+    mounted(){
+      // setInterval(()=>{
+      //   this.today = 'Today is '+new Date(new Date().getTime())
+      // },1000)
     }
   }
 </script>

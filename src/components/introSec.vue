@@ -2,7 +2,7 @@
     <div id="intro">
         <img src="../assets/me.jpg">
         <div>
-            <h3>Introduction:</h3>
+            <h3 @click="eventHandler">{{secName}}</h3>
             <p>Hi, my name is CHAO-AN MIU.</p>
             <p>I’m modest, amiable, persevering and responsible. I always took cautious and meticulous attitude to work.</p>
             <span><p>Phone: 0988-923-512. LINE: miau628 E-mail: miau_628@hotmail.com.</p></span>
@@ -10,12 +10,18 @@
     </div>
 </template>
 
-<script>
-    export default {
-        name: 'introSec',
-        data() {
-            return { profilePicture : './assets/me.jpg'}
-        } 
+<script setup>
+    import { useStore } from 'vuex'
+    import { defineProps } from 'vue'
+    const store = useStore()
+    const props = defineProps({  
+                    secName : { 
+                        type : String,
+                        default : "introSec header",
+                    }   
+                })
+    const eventHandler = ()=>{
+        store.commit("change",props.secName)
     }
 </script>
 

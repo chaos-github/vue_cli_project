@@ -1,7 +1,7 @@
 <template>
     <div id="education">
         <div>
-            <h3 align="center">Education</h3>
+            <h3 align="center">{{secName}}</h3>
                 <div v-for="(school,index) of Education" :key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
                     <span>{{school.name}}</span><span>{{school.start}}~{{school.end}}</span>
                 </div>
@@ -13,6 +13,12 @@
 
 export default {
     name: 'educaSec',
+    props:{
+        secName : { 
+            type : String,
+            default : "educaSec header",
+        }
+    },
     data(){
         return {
             choosenEdu : 0,
@@ -36,17 +42,16 @@ export default {
             }
         }
     },
-    computed:{
-        // changeColor(index){
-        //     return index===this.choosenEdu ? 'color:red;':'color:black;'
-        // }
-    },
+    // computed:{
+      
+    // },
     methods:{
         mouseOver(event){
-            event.target.style.color="green"
+          // console.log(event)
+          event.srcElement.parentNode.style.color="green"
         },
         mouseOut(event){
-            event.target.style.color= 'black'
+          event.srcElement.parentNode.style.color="black"
         },
       
     }
@@ -81,7 +86,7 @@ div#education > div  {
     font-size: 30px; 
     
   }
-  div#education > div span:nth-child(even){
+  div#education span:nth-child(even){
     width: 50%;
     text-align: right;
     flex:auto;
