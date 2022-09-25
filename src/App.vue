@@ -1,27 +1,28 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+
   <transition name="fade">
-    <div class="blackout" v-show="slideShow"  @click="closeMenu"></div>
+    <div class="blackout" v-show="slideShow"  @click="toggleMenu"></div>
   </transition>
-  <div class="title">
+  <h1 class="title">
     Now on page : <br>{{store.state.showSection}}
-  </div>
+  </h1>
 
   <transition name="slide">
     <div class="sideMenu" v-show="slideShow">
-      <button class="close-btn" @click="closeMenu">X</button>
+      <button class="close-btn" @click="toggleMenu">X</button>
       <h1>Menu</h1>
-      <p>
-          <router-link to="/">Go Home</router-link><br>
-          <router-link to="/edu">My education</router-link><br>
-          <router-link to="/works">Served company</router-link>
-      </p>
-      
+      <div>
+        <p @click="toggleMenu" style="">
+            <router-link to="/"><h2>Go Home</h2></router-link><br>
+            <router-link to="/edu"><h2>My education</h2></router-link><br>
+            <router-link to="/works"><h2>Served company</h2></router-link>
+        </p>
+      </div>
     </div>
   </transition>
 
   <h1 class="title"> Welcome to my Vue resume </h1>
-  <div class="title" @click="showMenu">
+  <div class="title" @click="toggleMenu">
     <div>
       <button @click="showMenu">click to see MORE</button>
     </div>
@@ -29,35 +30,24 @@
   
   <div id="wrapper" :class="getClasses">
     <router-view></router-view>
-    <!-- <MyResume @header-event="eventHandler"/> -->
-    <!-- {{store.state.showSection}} -->
+
   </div>
 </template>
 
 <script>
-  // import MyResume from './components/MyResume.vue'
 import { computed , ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
 
   export default {
     name: 'App',
-    // components: {
-    //   MyResume
-    // },
     setup(){
       const store = useStore()
       const slideShow = ref(false)
-      const eventHandler = ()=>{
-        alert(store.state.showSection)
+      
+      const toggleMenu = ()=>{
+        slideShow.value=!slideShow.value
       }
-      const showMenu = ()=>{
-        slideShow.value=true
-         //alert(slideShow.value)
-      }
-      const closeMenu = ()=>{
-        slideShow.value=false
-         //alert(slideShow.value)
-      }
+    
       const getClasses = computed(()=>{
         return {
           'edu' : (store.state.showSection == 'My education'),
@@ -68,9 +58,7 @@ import { useStore } from 'vuex'
         store,
         slideShow,
         getClasses,
-        showMenu,
-        closeMenu,
-        eventHandler
+        toggleMenu
       }
     }
   }
@@ -79,6 +67,7 @@ import { useStore } from 'vuex'
 <style scoped>
   .blackout{
     position: fixed;
+    top:0;
     background-color: black;
     opacity: .6;
     height: 100%;
@@ -91,6 +80,7 @@ import { useStore } from 'vuex'
     margin: 1px auto;
     border: 3px solid green;
     margin-top: 20px;
+    /* overflow: scroll; */
     /* min-height: 90vh; */
   }
 
@@ -117,6 +107,10 @@ import { useStore } from 'vuex'
     text-align: center;
     background-color: rgb(250, 250, 250);
     z-index: 99;
+  }
+
+  .sideMenu > div{
+    margin-top: 50px;
   }
 
   .menuBtn {
