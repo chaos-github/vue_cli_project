@@ -7,6 +7,7 @@
     <introSec secName="Introduction"/>
     <educaSec secName="Education"/> -->
   </div>
+  
 </template>
 
 <script>

@@ -6,7 +6,7 @@ import { createStore } from 'vuex'
 export default createStore({
     state: {
       isLoading: false,
-      showSection: 'introSec'
+      showSection: '...'
     },
     mutations: {
       Loaded(state) {
@@ -14,7 +14,7 @@ export default createStore({
         // state沒有age這個屬性
         // state.age = 18
       },
-      change(state, name){
+      showChange(state, name){
         state.showSection = name
       }
     }

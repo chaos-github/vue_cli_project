@@ -1,14 +1,14 @@
 <template>
-  <transition name="fade">
-    <div id="education" v-if="show">
-        <div>
-            <h3 align="center">Educations</h3>
-                <div v-for="(school,index) of Education" :key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
-                    <span>{{school.name}}</span><span>{{school.start}}~{{school.end}}</span>
-                </div>
+    <transition name="fade">
+        <div id="works" v-if="show">
+            <div>
+                <h3 align="center">Working experience</h3>
+                    <div v-for="(compny,index) of companies" :key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
+                        <span>{{compny.name}}</span><span>{{compny.start}}~{{compny.end}}</span>
+                    </div>
+            </div>
         </div>
-    </div>
-  </transition>
+    </transition>
 </template>
   
 <script>
@@ -25,30 +25,23 @@ export default {
         return {
             show : 0,
             text_color:'black',
-            Education:{
-              highSchool:{
-                name:'Nanhu senior highschool',
-                start:'2003/09',
-                end:'2006/07'
+            companies:[
+              {
+                name:'American Megatreds',
+                start:'2013/10',
+                end:'2018/01'
               },
-              University:{
-                name:'Fujen Catholic Unerversity',
-                start:'2006/09',
-                end:'2010/07'
+              {
+                name:'PChome store',
+                start:'2018/07',
+                end:'2023/01'
               },
-              masterDegree:{
-                name:'National ChunCheng Unerversity',
-                start:'2010/09',
-                end:'2012/07'
-              }
-            }
+             
+            ]
         }
     },
-    // computed:{
-      
-    // },
     mounted(){
-        store.commit('showChange','My education')
+        store.commit('showChange','Served company')
         setTimeout(()=>this.show=1,1)
     },
     methods:{
@@ -67,7 +60,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-div#education > div  {
+  div#works > div  {
     /* display: flex; */
     flex: auto; 
     /* flex-wrap: wrap; */
@@ -75,17 +68,14 @@ div#education > div  {
     padding: 0 10px;
   }
 
-
-
-  div#education > div > div {
+  div#works > div > div {
     display: flex;
     flex:auto;
     /* flex-wrap: wrap; */
     flex-direction: row;
   }
 
-  
-  div#education span:nth-child(odd){
+  div#works span:nth-child(odd){
     width: 50%;
     text-align: left;
     flex:auto;
@@ -93,7 +83,8 @@ div#education > div  {
     font-size: 30px; 
     
   }
-  div#education span:nth-child(even){
+
+  div#works span:nth-child(even){
     width: 50%;
     text-align: right;
     flex:auto;
