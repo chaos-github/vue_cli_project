@@ -1,20 +1,23 @@
 <template>
   <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+  <router-link to="/">Go Home</router-link><br><router-link to="/intro">Go Resume</router-link>
+
   <div id="wrapper">
-    <MyResume @header-event="eventHandler"/>
+    <router-view></router-view>
+    <!-- <MyResume @header-event="eventHandler"/> -->
     <!-- {{store.state.showSection}} -->
   </div>
 </template>
 
 <script>
-  import MyResume from './components/MyResume.vue'
+  // import MyResume from './components/MyResume.vue'
   import { useStore } from 'vuex'
 
   export default {
     name: 'App',
-    components: {
-      MyResume
-    },
+    // components: {
+    //   MyResume
+    // },
     setup(){
       const store = useStore()
       const eventHandler = ()=>{

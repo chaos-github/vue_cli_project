@@ -1,20 +1,22 @@
 <template>
+   <router-link to="/intro/introsec">Go education</router-link><br><router-link to="/intro/edusec">Go Resume</router-link>
   <div id="myResume">
-    <h2 align="center" v-once @click="emitEvent">{{welcomeMessage}}</h2>
+    <router-view></router-view>
+    <!-- <h2 align="center" v-once @click="emitEvent">{{welcomeMessage}}</h2>
     <p align="center" >{{today}}</p>
     <introSec secName="Introduction"/>
-    <educaSec secName="Education"/>
+    <educaSec secName="Education"/> -->
   </div>
 </template>
 
 <script>
-  import introSec from './introSec.vue'
-  import educaSec from './educaSec.vue'
+  // import introSec from './introSec.vue'
+  // import educaSec from './educaSec.vue'
   export default {
     name: 'MyResume',
     components:{
-      introSec,
-      educaSec
+      // introSec,
+      // educaSec
     },  
     data(){
       return {
@@ -34,7 +36,7 @@
     }
   }
 </script>
-
+ 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
