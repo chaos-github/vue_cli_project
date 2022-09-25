@@ -47,7 +47,7 @@ export default {
     methods:{
         mouseOver(event){
           // console.log(event)
-          event.srcElement.parentNode.style.color="green"
+          event.srcElement.parentNode.style.color="red"
         },
         mouseOut(event){
           event.srcElement.parentNode.style.color="black"
