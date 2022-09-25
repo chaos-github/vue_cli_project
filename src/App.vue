@@ -30,8 +30,8 @@
   
   <div id="wrapper" :class="getClasses">
     <router-view></router-view>
-
   </div>
+
 </template>
 
 <script>
@@ -78,19 +78,21 @@ import { useStore } from 'vuex'
     
     width: 80vw;
     margin: 1px auto;
-    border: 3px solid green;
+    border: 3px solid black;
     margin-top: 20px;
     /* overflow: scroll; */
     /* min-height: 90vh; */
+    border-radius: 5em;
   }
 
   #wrapper.edu{
-    border: 3px solid yellow;
-    min-height: 50vh;
+    border: 3px solid gray;
+    /* min-height: 50vh; */
+    padding-bottom: 10px;
   }
 
   #wrapper.wks{
-    border: 3px solid red;
+    border: 3px solid rgb(80, 5, 5);
     min-height: 50vh;
   }
 

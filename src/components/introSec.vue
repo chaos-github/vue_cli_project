@@ -3,10 +3,12 @@
         <div id="intro" v-show="show">
             <img src="../assets/me.jpg" @load="imageLoaded">
             <div>
-                <h3 @click="eventHandler">Introduction</h3>
-                <p>Hi, my name is CHAO-AN MIU.</p>
-                <p>I’m modest, amiable, persevering and responsible. I always took cautious and meticulous attitude to work.</p>
-                <span><p>Phone: 0988-923-512. LINE: miau628 E-mail: miau_628@hotmail.com.</p></span>
+                <h3>Introduction</h3>
+                <b>
+                    <p>Hi, my name is CHAO-AN MIU.</p>
+                    <p>I’m modest, amiable, persevering and responsible. I always took cautious and meticulous attitude to work.</p>
+                </b>
+                <span><b><p>Phone: 0988-923-512. LINE: miau628 E-mail: miau_628@hotmail.com.</p></b></span>
             </div>
         </div>
     </transition>
@@ -27,9 +29,7 @@
         setTimeout(()=>store.commit('showChange','Introduction'),100)
         // setTimeout(()=>show.value=true,100)
     });
-    const eventHandler = ()=>{
-        alert("eventHandler")
-    }
+   
     const imageLoaded = ()=>{
         show.value=true
     }

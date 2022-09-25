@@ -3,15 +3,18 @@
     <div id="education" v-if="show">
         <div>
             <h3 align="center">Educations</h3>
-                <div v-for="(school,index) of Education" :key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
-                    <span>{{school.name}}</span><span>{{school.start}}~{{school.end}}</span>
+                <div v-for="(school,index) of Education" :key="index" :data-key="index"  @mouseover="mouseOver"  @mouseout="mouseOut">
+                    <span :data-key="index">{{school.name}}</span><span :data-key="index">{{school.start}}~{{school.end}}</span>
                 </div>
         </div>
+        <swiper :showWhich="getNowon"/>
+        {{getNowon}}
     </div>
-  </transition>
+  </transition> 
 </template>
   
 <script>
+import swiper from './swiper.vue'
 import store from '@/store'
 export default {
     name: 'educaSec',
@@ -21,8 +24,12 @@ export default {
         //     default : "educaSec header",
         // }
     },
+    components:{
+      swiper
+    },
     data(){
         return {
+            selected : "0",
             show : 0,
             text_color:'black',
             Education:{
@@ -44,16 +51,19 @@ export default {
             }
         }
     },
-    // computed:{
-      
-    // },
+    computed:{
+      getNowon(){
+        return this.selected
+      }
+    },
     mounted(){
         store.commit('showChange','My education')
         setTimeout(()=>this.show=1,1)
     },
     methods:{
         mouseOver(event){
-          // console.log(event)
+          this.selected = event.srcElement.dataset.key
+          console.log( this.selected )
           event.srcElement.parentNode.style.color="green"
         },
         mouseOut(event){
@@ -66,6 +76,10 @@ export default {
   
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+div#education{
+  height: auto;
+  width:auto;
+}
 
 div#education > div  {
     /* display: flex; */
