@@ -1,6 +1,5 @@
 <template>
-    {{nowOn}}123
-    <my-swiper
+    <v-swiper
         :scrollbar="{
             hide: true,
         }"
@@ -12,21 +11,17 @@
       <swiper-slide><img src="../assets/NHUSH.jpg"></swiper-slide>
       <swiper-slide><img src="../assets/FJU.jpg"></swiper-slide>
       <swiper-slide><img src="../assets/CCU.jpg"></swiper-slide>
-    </my-swiper>
+    </v-swiper>
    
-  </template>
-  <script>
+</template>
+<script>
   // Import Swiper Vue.js components
   import { Swiper, SwiperSlide } from "swiper/vue";
-  import { ref, watch } from "vue";
-  
+  import { watch } from "vue";
   // Import Swiper styles
   import "swiper/css";
-  
   import "swiper/css/scrollbar";
-  
-//   import "./style.css";
-  
+  // import "./style.css";
   // import required modules
   import { Scrollbar } from "swiper";
   
@@ -35,34 +30,36 @@
         "showWhich"
     ],
     components: {
-      "mySwiper":Swiper,
+      "vSwiper":Swiper,
       SwiperSlide,
     },
-    setup(props) {
-        console.log(props)
-        const nowOn = ref(props.showWhich)
+    setup(props,target) {
+        console.log(props,target)
+        let swiperInstance = null
         watch(()=>props.showWhich, (newNum, oldNum) => {
             console.log(
-            "ref 資料" + nowOn.value + " 的監控",
+            "props 資料 showWhich 的監控",
             "新：" + newNum + "，舊：" + oldNum
             );
+            swiperInstance.slideTo(newNum)
         });
         const onSwiper = (swiper) => {
-            console.log(swiper);
+          swiperInstance = swiper
+          target.emit("showContent")
+          console.log(swiper);
         };
         const onSlideChange = (event) => {
-            nowOn.value = event.activeIndex
+            target.emit("update:showWhich", event.activeIndex)
             console.log('slide change',event.activeIndex);
         };
         return {
-            nowOn,
             onSwiper,
             onSlideChange,
             modules: [Scrollbar],
         };
     },
   };
-  </script>
+</script>
   
 <style>
   .swiper {
