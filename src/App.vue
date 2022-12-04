@@ -24,7 +24,7 @@
   <h1 class="title"> Welcome to my Vue resume </h1>
   <div class="title" @click="toggleMenu">
     <div>
-      <button @click="showMenu">click to see MORE</button>
+      <button>click to see MORE</button>
     </div>
   </div>
   
@@ -38,30 +38,30 @@
 import { computed , ref } from '@vue/reactivity'
 import { useStore } from 'vuex'
 
-  export default {
-    name: 'App',
-    setup(){
-      const store = useStore()
-      const slideShow = ref(false)
-      
-      const toggleMenu = ()=>{
-        slideShow.value=!slideShow.value
-      }
+export default {
+  name: 'App',
+  setup(){
+    const store = useStore()
+    const slideShow = ref(false)
     
-      const getClasses = computed(()=>{
-        return {
-          'edu' : (store.state.showSection == 'My education'),
-          'wks' : (store.state.showSection == 'Served company'),
-        }
-      })
+    const toggleMenu = ()=>{
+      slideShow.value=!slideShow.value
+    }
+  
+    const getClasses = computed(()=>{
       return {
-        store,
-        slideShow,
-        getClasses,
-        toggleMenu
+        'edu' : (store.state.showSection == 'My education'),
+        'wks' : (store.state.showSection == 'Served company'),
       }
+    })
+    return {
+      store,
+      slideShow,
+      getClasses,
+      toggleMenu
     }
   }
+}
 </script>
 
 <style scoped>
@@ -82,7 +82,7 @@ import { useStore } from 'vuex'
     margin-top: 20px;
     /* overflow: scroll; */
     /* min-height: 90vh; */
-    border-radius: 5em;
+    border-radius: 2em;
   }
 
   #wrapper.edu{

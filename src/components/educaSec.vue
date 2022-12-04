@@ -86,8 +86,6 @@ export default {
     padding: 0 10px;
   }
 
-
-
   div#education > div > div {
     display: flex;
     flex:auto;
@@ -95,7 +93,6 @@ export default {
     flex-direction: row;
   }
 
-  
   div#education span:nth-child(odd){
     width: 50%;
     text-align: left;
@@ -104,6 +101,7 @@ export default {
     font-size: 30px; 
     
   }
+  
   div#education span:nth-child(even){
     width: 50%;
     text-align: right;
